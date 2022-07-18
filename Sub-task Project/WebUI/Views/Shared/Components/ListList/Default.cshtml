@@ -1,0 +1,24 @@
+﻿@model ListListViewModel
+
+
+<h2>Listeler</h2>
+
+<div class="list-group">
+    @{
+        var indexcss = "list-group-item";
+        if (Model.CurrentList == 0)
+        {
+            indexcss += " active";
+        }
+    }
+    <a href="/task/index" class="@indexcss">Tüm Listeler</a>
+    @foreach (var list in Model.Lists)
+    {
+        var css = "list-group-item";
+        if (list.Id == Model.CurrentList)
+        {
+            css += " active";
+        }
+        <a href="/task/index?listId=@list.Id" class="@css">@list.Name</a>
+    }
+</div>

@@ -1,0 +1,49 @@
+﻿@model TaskListViewModel
+
+@{
+    ViewData["Title"] = "Detaylar";
+    Layout = "_Layout";
+}
+
+
+
+<div class="container">
+    <form asp-action="Detail" asp-controller="Task" method="post">
+        <div class="form-check">
+            <input type="checkbox" asp-for="@Model.Task.IsCompleted" />
+            <input type="hidden" asp-for="Task.Id"/>
+            <input type="hidden" asp-for="Task.Text"/>
+            @if (Model.Task.IsCompleted == false)
+            {
+                <label>@Model.Task.Text</label>
+            }
+            else
+            {
+                <label class="text-decoration-line-through">@Model.Task.Text</label>
+            }
+
+            @if (Model.Tasks != null)
+            {
+                @for (int i = 0; i < Model.Tasks.Count; i++)
+                {
+                    <div class="form-check">
+                        <input type="checkbox" asp-for="@Model.Tasks[i].IsCompleted" />
+                        <input type="hidden" asp-for="@Model.Tasks[i].Id"/>
+                        
+                        @if (Model.Tasks[i].IsCompleted == false)
+                        {
+                            <label>@Model.Tasks[i].Text</label>
+                        }
+                        else
+                        {
+                            <label class="text-decoration-line-through">@Model.Tasks[i].Text</label>
+                        }
+                    </div>
+                }
+            }
+        </div><br/>
+        <button class="btn btn-primary btn-sm">Kaydet</button>
+        <a class="btn btn-sm btn-success" asp-controller="Task" asp-action="Addsubtask" asp-route-Id="@Model.Task.Id">Alt Görev Ekle</a>
+        <a class="btn btn-sm btn-danger" asp-controller="Task" asp-action="DeleteSubtask" asp-route-Id="@Model.Task.Id">Görev Sil</a>
+    </form>
+</div>

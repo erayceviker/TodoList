@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Liste Düzenle";
+}
+
+@model ListListViewModel
+
+@{
+    ViewData["Title"] = "Liste Düzenle";
+}
+
+<div class="container table-responsive" style="padding-top: 50px;">
+    <form>
+        <a class="btn btn-sm btn-success" asp-controller="List" asp-action="AddList">Yeni Liste Oluştur</a>
+        <table class="table table-borderless">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>İsim</th>
+                <th>İsim Değiştir</th>
+                <th>Sil</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var list in Model.Lists)
+            {
+                <tr>
+                    <td>@list.Id</td>
+                    <td>@list.Name</td>
+                    <td><a class="btn btn-sm btn-primary" asp-controller="List" asp-action="ChangeNameList" asp-route-Id="@list.Id">İsim Değiştir</a></td>
+                    <td><a class="btn btn-sm btn-danger" asp-controller="List" asp-action="Deletelist" asp-route-Id="@list.Id">Sil</a></td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </form>
+</div>

@@ -1,0 +1,23 @@
+﻿@model TaskListViewModel
+
+@{
+    ViewData["Title"] = "Görevler";
+    Layout = "_Layout";
+}
+
+<h2>Görevler</h2>
+<div class="container">
+    <div class="list-group">
+        @foreach (var task in Model.Tasks)
+        {
+            if (task.IsCompleted == false)
+            {
+                <a href="/task/detail?taskId=@task.Id" class="list-group-item list-group-item-action text-primary">@task.Text</a>
+            }
+            else
+            {
+                <a href="/task/detail?taskId=@task.Id" class="list-group-item list-group-item-action text-decoration-line-through text-danger">@task.Text</a>
+            }
+        }
+    </div>
+</div>

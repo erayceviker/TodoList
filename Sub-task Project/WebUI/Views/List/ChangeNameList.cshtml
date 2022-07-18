@@ -1,0 +1,22 @@
+﻿
+
+@{
+    ViewData["Title"] = "Liste İsmi Değiştir";
+}
+
+@model Entities.Concrete.List
+
+<h4>Liste İsmi Değiştir</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="ChangeNameList" asp-controller="List" method="post">
+            <div class="form-group">
+                <input asp-for="Name" class="form-control" placeholder=" Yeni Liste İsmi"/>
+            </div><br/>
+            <div class="form-group">
+                <input type="submit" value="Güncelle" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>

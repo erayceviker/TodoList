@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewData["Title"] = "Görev Ekle";
+}
+
+@model AddTaskViewModel
+
+
+<form asp-action="AddTask" asp-controller="Task" method="post">
+
+    <div class="form-group">
+        <label for="">liste Seçiniz</label>
+        <select asp-for="@Model.Task.ListId" class="form-control custom-select" id="taskId">
+            <option value="" selected>Seçiniz</option>
+            @foreach (var list in Model.Lists)
+            {
+                <option value="@list.Id">@list.Name</option>
+            }
+        </select>
+    </div><br/>
+
+    <div class="form-group">
+        <label asp-for="Task.Text">Görev</label>
+        <input asp-for="Task.Text" class="form-control" placeholder="Görev Adı"/>
+    </div>
+    <br/>
+    <button class="btn btn-success btn-sm">Oluştur</button>
+</form>
